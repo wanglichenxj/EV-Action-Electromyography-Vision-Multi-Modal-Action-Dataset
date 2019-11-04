@@ -1,0 +1,3 @@
+[submodule "smile-mocap"]
+	path = smile-mocap
+	url = https://github.com/visionjo/smile-mocap.git
