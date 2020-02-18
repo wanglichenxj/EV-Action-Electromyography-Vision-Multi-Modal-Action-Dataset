@@ -4,27 +4,36 @@ This repository contains code for our IEEE International Conference on Automatic
 ## Our paper
 ### Introduction
 
-Multi-label learning (MLL) solves the problem that one single sample corresponds to multiple labels. It is a challenging task due to the long-tail label distribution and the sophisticated label relations. Semi-supervised MLL methods utilize a small-scale labeled samples and large-scale unlabeled samples to enhance the performance. However, these approaches mainly focus on exploring the data distribution in feature space while ignoring mining the label relation inside of each instance. 
+Multi-modal human action analysis is a critical and attractive research topic. However, the majority of the existing datasets only provide visual modalities (i.e., RGB, depth and skeleton). 
 
 <div align="center">
-    <img src="presentation/concept.png", width="450">
+    <img src="presentations/all_modal.png", width="850">
 </div>
 
-We proposed a Dual Relation Semi-supervised Multi-label Learning (DRML) approach which jointly explores the feature distribution and the label relation simultaneously. A dual-classifier domain adaptation strategy is proposed to align features while generating pseudo labels to improve learning performance. A relation network is proposed to explore the relation knowledge. As a result, DRML effectively explores the feature-label and label-label relations in both labeled and unlabeled samples. It is an end-to-end model without any extra knowledge. Extensive experiments illustrate the effectiveness and efficiency of our method.
+To make up this, we introduce a new, large-scale EV-Action dataset in this work, which  consists of RGB, depth, electromyography (EMG), and two skeleton modalities. Compared with the conventional datasets, EV-Action dataset has two major improvements: (1) we deploy a motion capturing system to obtain high quality skeleton modality, which provides more comprehensive motion information including skeleton, trajectory, acceleration with higher accuracy, sampling frequency, and more skeleton markers. (2) we introduce an EMG modality which is usually used as an effective indicator in the biomechanics area, also it has yet to be well explored in motion related research. To the best of our knowledge, this is the first action dataset with EMG modality. The details of EV-Action dataset are clarified, meanwhile, a simple yet effective framework for EMG-based action recognition is proposed. Moreover, state-of-the-art baselines are applied to evaluate the effectiveness of each modality. The obtained result clearly shows the validity of EMG modality in human action analysis tasks. We hope this dataset can make significant contributions to human motion analysis, computer vision, machine learning, biomechanics, and other interdisciplinary fields.
 
-### Our model
+* We designed and constructed a data collection center with optical tracking system and Kinect-V2 systems. This allowed us to capture the four visual modalities (i.e., RGB, Depth, Skeleton-K, and Skeleton-V).
+* EMG signal from skeletal muscles is extracted. This is the first action dataset including EMG, which provides complimentary information and reveals valuable correlations between visual and non-visual modalities.
+* A simple yet effective EMG recognition framework is proposed which achieves highest performance and reveals unique characteristics of EMG in human actions.
+* We defined experimental settings and provided the state-of-the-art benchmarks for each modality. EMG is merged with other modalities which further demonstrates the complementary of the EMG modal.
+
+### Data Collection
+Data Collection Center consists of 8 the Vicon cameras placed around the parameter of a 4.6m by 4.6m room which has a detectable area of 3m by 3m. All traceable markers fell in the Vicon cameras field of view. There was a single Kinect sensor centered facing front, and each action was performed with the face of this Kinect sensor as the front. 4 EMG sensors were connected to each subject.
+
 <div align="center">
-    <img src="presentation/model.png", width="1000">
+    <img src="presentations/data_collection_center.png", width="450">
 </div>
 
-DRML includes a novel domain adaptation co-training strategy and a label relation mining module in semi-supervised fashion. It explores both the instance similarity in feature space and the label-label relation in label space simultaneously. Specifically, deploy a two-classifier domain adaptation strategy to align the feature distribution in a latent space. Moreover, it further provides the pseudo label of unlabeled samples to enhance the training performance. Furthermore, a relation network is proposed to utilize the predictions from the two classifiers to learn the label relations. All modules are simultaneously optimized in an end-to-end manner to achieve the highest performance. The major contributions of our work are briefly listed as follows:
+We deploy 8 Vicon-T40s infrared cameras to capture the stickup marks on each subject. The cameras sample data points as 10-bit gray-scale frames at 100 fps and with a resolution of 2336 by 1728. Then, the frames were calibrated and labeled to obtain skeleton information. We follow the standard scheme~\cite{vicon_plugin} by placing 39 markers around human body. It captures precise and comprehensive motion information, such as the second bounce in the \textit{Fall Down} action class. We deploy wireless EMG sensors which captures 16-bit EMG signal at 1000 Hz. This enables the sensors to cover the whole frequency spectrum of skeletal EMG (i.e., 20-450 Hz) signal. We attached 4 sensors to each subject: the middle of each forearm and the shank muscles. There are 3 reasons: 1), the common actions usually utilize arms and legs; 2), the location of each muscle (mid-line of the muscle in the belly that is between the nearest innervation zone and the myotendinous junction) gives off a signal of highest amplitude, which makes the signal most responsive to the corresponding action; 3), the crosstalk noise generated by neighboring muscles has the potential to get misinterpreted for originating from a muscle of interest, and placing the sensor mid-line makes it less susceptible to this noise.
 
-* A two-classifier domain adaptation co-training strategy is proposed. It aligns the labeled and unlabeled samples in feature space to improve model accuracy and robustness.
-* A label assignment strategy is proposed to generate pseudo labels to the unlabeled data. The assigned samples are further utilized in the training process.
-* A graph-based relation network is proposed to learn the label relations for both labeled and unlabeled samples.
+<div align="center">
+    <img src="presentations/marker_position.png", width="450">
+</div>
 
+## Baseline Code
+The dataset and code will be available soon. Feel free to send email if you have any questions!
 
-## Running the code
+## EV-Action Dataset
 The dataset and code will be available soon. Feel free to send email if you have any questions!
 
 ## Authors
