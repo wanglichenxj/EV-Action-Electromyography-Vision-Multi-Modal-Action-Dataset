@@ -49,7 +49,7 @@ Welcome to send us Emails if you have any questions about the code and our work 
 @inproceedings{EVaction_lichen,
   title={EV-Action: Electromyography-Vision Multi-Modal Action Dataset},
   author={Wang, Lichen and Sun, Bin and Robinson, Joseph and Jing, Taotao and Fu, Yun},
-  journal={Proceedings of IEEE International Conference on Automatic Face and Gesture Recognition},
+  booktitle={Proceedings of IEEE International Conference on Automatic Face and Gesture Recognition},
   year={2020}
 }
 ```
